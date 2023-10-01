@@ -16,6 +16,7 @@ app.post("/Account/Admin.html",(req,res)=>{
 app.get("/Account/ForgotPassword.html",(req,res)=>{
   res.sendFile(__dirname+"/public/Account/ForgotPassword.html");
 });
+
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });
