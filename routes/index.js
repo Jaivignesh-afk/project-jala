@@ -7,7 +7,7 @@ app.use(express.static(__dirname+'/public'));
 //app.use(bodyParser.urlencoded({extended: false}));
 
 app.get("/",(res,req)=>{
-  res.sendFile(__dirname+"index.html");
+  res.sendfile(__dirname+"index.html");
 });
 
 app.listen(process.env.PORT||3000,()=>{
