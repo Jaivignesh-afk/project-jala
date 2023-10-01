@@ -12,6 +12,6 @@ const app = express();
 */
 
 app.listen(process.env.PORT||3000,()=>{
-  res.send("Server is running succesfully");
+  console.log("Server is running succesfully");
 });
-module.exports = router;
+
