@@ -37,25 +37,28 @@ app.post("/",(req,res)=>{
       
   }
 });
+app.post("/Employee/Create.html",(req,res)=>{
+  async function main() {
+    await db.connect();
+  
+    const fullname = req.body.fullname;
+    const email = req.body.email;
+    const phno = req.body.phno;
+    const password = req.body.password;
+  
+    await db.createUser(fullname, email,phno,password);
+  
+    await db.close();
+    res.write("<script language='javascript'>window.alert('You have succesfully created a entry');window.location.href='/Employee/Create.html'</script>");
+    res.end();
+  }
+  main().catch((error) => {
+    console.error('Application error:', error);
+  });
+});
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });
 
  // Adjust the path as needed
 
-async function main() {
-  await db.connect();
-
-  const fullname = "Jai";
-  const email = "j@gmail.com";
-  const phno = 90800;
-  const password = "hello";
-
-  //await db.createUser(fullname, email,phno,password);
-
-  //await db.close();
-}
-
-main().catch((error) => {
-  console.error('Application error:', error);
-});
