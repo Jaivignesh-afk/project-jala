@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
+const db = require('./database.js');
 const app = express();
 /* GET home page. */
 
@@ -21,6 +21,9 @@ app.get("/Account/ForgotPassword.html",(req,res)=>{
 app.get("/Home/Index.html",(req,res)=>{
   res.sendFile(__dirname+"/public/Home/Index.html");
 });
+app.get("/Employee/Create.html",(req,res)=>{
+  res.sendFile(__dirname+"/public/Employee/Create.html");
+});
 app.post("/",(req,res)=>{
   email = req.body.email;
   password = req.body.password;
@@ -38,3 +41,21 @@ app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });
 
+ // Adjust the path as needed
+
+async function main() {
+  await db.connect();
+
+  const fullname = "Jai";
+  const email = "j@gmail.com";
+  const phno = 90800;
+  const password = "hello";
+
+  //await db.createUser(fullname, email,phno,password);
+
+  //await db.close();
+}
+
+main().catch((error) => {
+  console.error('Application error:', error);
+});
