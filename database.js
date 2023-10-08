@@ -12,6 +12,7 @@ const client = new Client({
   port: 5432, // Default PostgreSQL port
   ssl:true,
 });
+var table = [];
 
 async function connect() {
   try {
@@ -21,7 +22,7 @@ async function connect() {
     console.error('Error connecting to PostgreSQL database', error);
   }
 }
-
+const {rows} = [];
 async function createUser(fullname, email,phno,password) {
   const query = `
     INSERT INTO employees.test(fullname, email,phno,password)
@@ -38,7 +39,17 @@ async function createUser(fullname, email,phno,password) {
     console.error('Error saving user to the database', error);
   }
 }
-
+async function readTable(){
+  
+  try {
+    const query = 'SELECT * FROM employees.test'; // Replace with your table name
+    rows  = await client.query(query);
+     // Send the entries as JSON to the web page
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 async function close() {
   try {
     await client.end();
@@ -51,5 +62,7 @@ async function close() {
 module.exports = {
   connect,
   createUser,
+  readTable,
+  rows,
   close,
 };

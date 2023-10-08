@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const db = require('./database.js');
+const { table } = require('console');
 const app = express();
 /* GET home page. */
 
@@ -56,9 +57,14 @@ app.post("/Employee/Create.html",(req,res)=>{
     console.error('Application error:', error);
   });
 });
-app.get("/Employee/Search.html",(req,res)=>{
+app.get("/Employee/Search.html", async (req,res)=>{
 res.sendFile(__dirname+"/public/Employee/Search.html");
+
+await db.readTable();
+await db.close();
+res.json(rows);
 });
+
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });
