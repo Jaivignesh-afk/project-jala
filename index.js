@@ -56,6 +56,9 @@ app.post("/Employee/Create.html",(req,res)=>{
     console.error('Application error:', error);
   });
 });
+app.get("/Employee/Search.html",(req,res)=>{
+res.sendFile(__dirname+"/public/Employee/Search.html");
+});
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });
