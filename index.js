@@ -3,8 +3,14 @@ var bodyParser = require('body-parser');
 const db = require('./database.js');
 const { table } = require('console');
 const app = express();
+app.set('view engine','ejs');
 /* GET home page. */
-
+async function main(){
+  await db.connect();
+}
+main().catch((error)=>{
+  console.log(error);
+});
 app.use(express.static(__dirname+'public'));
 app.use(bodyParser.urlencoded({extended: false}));
 var email = '';
@@ -40,7 +46,7 @@ app.post("/",(req,res)=>{
 });
 app.post("/Employee/Create.html",(req,res)=>{
   async function main() {
-    await db.connect();
+    
   
     const fullname = req.body.fullname;
     const email = req.body.email;
@@ -49,7 +55,7 @@ app.post("/Employee/Create.html",(req,res)=>{
   
     await db.createUser(fullname, email,phno,password);
   
-    await db.close();
+   
     res.write("<script language='javascript'>window.alert('You have succesfully created a entry');window.location.href='/Employee/Create.html'</script>");
     res.end();
   }
@@ -57,13 +63,28 @@ app.post("/Employee/Create.html",(req,res)=>{
     console.error('Application error:', error);
   });
 });
-app.get("/Employee/Search.html", async (req,res)=>{
-res.sendFile(__dirname+"/public/Employee/Search.html");
+app.get("/Employee/Search.ejs",async (req,res)=>{
 
-await db.readTable();
-await db.close();
-res.json(rows);
+async function read(){try{  
+  
+  
+
+  table_row= await db.readTable();
+  
+  
+ 
+  res.render(__dirname+"/public/Employee/Search.ejs",{table_row});
+
+
+}
+catch(error){
+  console.error(error);
+}}
+read().catch((er)=>{
+  console.error(er);
 });
+});
+
 
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");

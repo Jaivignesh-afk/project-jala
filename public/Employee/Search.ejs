@@ -198,7 +198,7 @@ main {
         <div class="collapse" id="orders-collapse" style="">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="../Employee/Create.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Create</a></li>
-            <li><a href="../Employee/Search.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Search</a></li>
+            <li><a href="../Employee/Search.ejs" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Search</a></li>
             <li><a href="../Employee/Update.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Update</a></li>
           </ul>
         </div>
@@ -231,30 +231,33 @@ main {
       <th scope="col">Password</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="tab">
+    <% for(var i=0;i<table_row.length;i++){ %>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    
+      <th scope="row"><%= i %></th>
+      <td><%= table_row[i].fullname %></td>
+      <td><%= table_row[i].email %></td>
+      <td><%= table_row[i].phno %></td>
+      <td><%= table_row[i].password %></td>
+    </tr> 
+    <% } %>
   </tbody>
 </table>
-<script >
-fetch('/Employee/Create.html')
-      .then((response) => response.json())
-      .then((data) => {
-        document.write(data);
-        const entryList = document.getElementByTagName('tbody');
-        data.forEach((entry) => {
+<script>
+  
+ const entryList = document.querySelector(".tab");
 
+
+        for(i=0;i<table_row.length;i++){
           const listItem = document.createElement('tr');
-          listItem.textContent = `<td>${entry.}</td><td>${entry.email}</td><td>${entry.phno}</td><td>${entry.password}</td>`;
+          listItem.textContent = `<th scope="row">${i}</th><td>${table_row[i].fullname}</td><td>${table_row[i].phno}</td><td>${table_row[i].email}</td><td>${table_row[i].password}</td>`;
           // Customize this based on your table structure
           entryList.appendChild(listItem);
-        });
-      });
+          
+        }
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 </html>
