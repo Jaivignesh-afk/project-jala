@@ -52,8 +52,9 @@ app.post("/Employee/Create.html",(req,res)=>{
     const email = req.body.email;
     const phno = req.body.phno;
     const password = req.body.password;
+    const sno = req.body.sno;
   
-    await db.createUser(fullname, email,phno,password);
+    await db.createUser(fullname, email,phno,password,sno);
   
    
     res.write("<script language='javascript'>window.alert('You have succesfully created a entry');window.location.href='/Employee/Create.html'</script>");
@@ -84,8 +85,20 @@ read().catch((er)=>{
   console.error(er);
 });
 });
-
-
+app.post("/Employee/Search.ejs", async (req,res)=>{
+  try{
+    console.log(req.body);
+    const key = req.body.key;
+    const value = req.body.value;
+    const sno = req.body.sno;
+ 
+  await db.update(key,value,sno);
+  
+  res.write("<script language='javascript'>window.alert('You have succesfully updated an entry');window.location.href='/Employee/Search.ejs'</script>");
+}catch(error){
+  console.error(error);
+}
+});
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");
 });

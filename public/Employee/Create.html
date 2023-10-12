@@ -229,7 +229,6 @@ main {
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="../Employee/Create.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Create</a></li>
             <li><a href="../Employee/Search.ejs" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Search</a></li>
-            <li><a href="../Employee/Update.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Update</a></li>
           </ul>
         </div>
       </li>
@@ -270,13 +269,13 @@ main {
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
              </div>
-            <input name="fullname" class="form-control" placeholder="Full name(max 15)" type="text">
+            <input name="fullname" class="form-control" placeholder="Full name" type="text">
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
              </div>
-            <input name="email" class="form-control" placeholder="Email address(max 20)" type="email">
+            <input name="email" class="form-control" placeholder="Email address" type="email">
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -288,7 +287,7 @@ main {
                 <option value="2">+198</option>
                 <option value="3">+701</option>
             </select>
-            <input name="phno" class="form-control" placeholder="Phone number(max 5)" type="text">
+            <input name="phno" class="form-control" placeholder="Phone number(max 10)" type="text">
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -305,7 +304,7 @@ main {
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input class="form-control" name="password" placeholder="Create password(max 20 char)" type="password">
+            <input class="form-control" name="password" placeholder="Create password" type="password">
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -313,6 +312,12 @@ main {
             </div>
             <input class="form-control" placeholder="Repeat password" type="password">
         </div> <!-- form-group// -->  
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          </div>
+          <input class="form-control" name="sno" placeholder="Employee id" type="number">
+      </div>
         <br>                                    
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block" formaction="../Employee/Create.html"> Save</button>

@@ -199,7 +199,6 @@ main {
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="../Employee/Create.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Create</a></li>
             <li><a href="../Employee/Search.ejs" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Search</a></li>
-            <li><a href="../Employee/Update.html" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Update</a></li>
           </ul>
         </div>
       </li>
@@ -229,35 +228,115 @@ main {
       <th scope="col">Email</th>
       <th scope="col">Phone Number</th>
       <th scope="col">Password</th>
+      <th scope="col">EmpID</th>
+
     </tr>
   </thead>
-  <tbody class="tab">
+  <tbody>
+    
     <% for(var i=0;i<table_row.length;i++){ %>
-    <tr>
-      <th scope="row"><%= i %></th>
-      <td><%= table_row[i].fullname %></td>
-      <td><%= table_row[i].email %></td>
-      <td><%= table_row[i].phno %></td>
-      <td><%= table_row[i].password %></td>
-    </tr> 
+    <tr class='header<%= i %>'>
+      <th scope="row" ><%= i %></th>
+      <td value="0"><%= table_row[i].fullname %><button type="button" aria-disabled="true" class="btn btn-outline-secondary" column="fullname" id ='<%= i %>' style="float:right" value="2" name="<%= table_row[i].sno %>" onclick="demo(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+</svg>
+        <span class="visually-hidden">Button</span>
+      </button></td>
+      <td><%= table_row[i].email %><button type="button" class="btn btn-outline-secondary" aria-disabled="true" column="email" id ='<%= i %>' style="float:right" value="3" name="<%= table_row[i].sno %>" onclick="demo(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+</svg>
+        <span class="visually-hidden">Button</span>
+      </button></td>
+      <td><%= table_row[i].phno %><button type="button" class="btn btn-outline-secondary"  style="float:right" column="phno" value="4" id ='<%= i %>' name='<%= table_row[i].sno %>' onclick="demo(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+</svg>
+        <span class="visually-hidden">Button</span>
+      </button></td>
+      <td><%= table_row[i].password %><button type="button" class="btn btn-outline-secondary" aria-disabled="true" column="password" id ='<%= i %>' style="float:right" value="5" name="<%= table_row[i].sno %>" onclick="demo(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+</svg>
+        <span class="visually-hidden">Button</span>
+      </button></td>
+    
+    <td><%= table_row[i].sno %></td>
+  </tr> 
     <% } %>
+  
   </tbody>
+
 </table>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+  
+</script>
 <script>
   
- const entryList = document.querySelector(".tab");
+  function demo(clickedElement){
+    var element = document.querySelector(`.header${clickedElement.id} :nth-child(${clickedElement.value})`);
+   
+    const td = document.createElement("td");   
+    const div = document.createElement("div");
+    const input =  document.createElement("input");
+    const button = document.createElement("button");
+    const submit = document.createElement('button');
+    const form = document.createElement("form");
+    const inp = document.createElement("input");
+    const k = document.createElement("input");
+    const disabled = document.querySelectorAll('button[onclick="demo(this)"]');
+    for(var i=0;i<disabled.length;i++){
+      disabled[i].className += " disabled";
+    }
+    submit.type = 'submit';
+    submit.textContent = 'Submit'; 
+    submit.classList.add("btn");
+    submit.classList.add("btn-outline-secondary");
+    inp.type = 'hidden';
+    k.type = 'hidden';
 
+    button.type = 'button';
+    button.textContent = "Cancel";
+    button.classList.add("btn");
+    button.classList.add("btn-outline-secondary");
+    submit.setAttribute("formaction","../Employee/Search.ejs");
+    inp.setAttribute("name","sno");
+    inp.setAttribute("value",Number(clickedElement.name));
+    k.setAttribute("name","key");
+    
+    const values= ["fullname","email","phno","password"];
+    k.setAttribute("value",values[Number(clickedElement.value)-2]);
+    form.setAttribute("method","POST");
+    
+   // input.setAttribute("column",values[Number(clickedElement.value)-2]);
+    button.setAttribute("id","button-addon2");
+    input.type = 'text';
+    input.setAttribute("aria-describedby","button-addon2");
+    input.setAttribute("name","value");
+    input.classList.add("form-control");
+    div.classList.add("input-group");
+    div.classList.add("mb-3");
+    element.appendChild(td);
+    td.appendChild(form);
+    form.appendChild(div);
+    div.appendChild(input);
+    div.append(inp);
+    div.append(k);
+    div.append(button);
+    div.append(submit);
+    
+    element.replaceWith(td);
+    button.addEventListener("click",()=>{
+      td.replaceWith(element);
+      for(var i=0;i<disabled.length;i++){
+      disabled[i].classList.remove("disabled");
+    }
+    });
+   
+  }
 
-        for(i=0;i<table_row.length;i++){
-          const listItem = document.createElement('tr');
-          listItem.textContent = `<th scope="row">${i}</th><td>${table_row[i].fullname}</td><td>${table_row[i].phno}</td><td>${table_row[i].email}</td><td>${table_row[i].password}</td>`;
-          // Customize this based on your table structure
-          entryList.appendChild(listItem);
-          
-        }
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+  </script>
 </body>
 </html>

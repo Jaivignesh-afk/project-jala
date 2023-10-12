@@ -23,14 +23,14 @@ async function connect() {
   }
 }
 
-async function createUser(fullname, email,phno,password) {
+async function createUser(fullname, email,phno,password,sno) {
   const query = `
-    INSERT INTO employees.test(fullname, email,phno,password)
-    VALUES ($1,$2,$3,$4)
+    INSERT INTO employees.test(fullname, email,phno,password,sno)
+    VALUES ($1,$2,$3,$4,$5)
     RETURNING *;
   `;
 
-  const values = [fullname, email,phno,password];
+  const values = [fullname, email,phno,password,sno];
 
   try {
     const result = await client.query(query, values);
@@ -42,7 +42,7 @@ async function createUser(fullname, email,phno,password) {
 async function readTable(){
   
   try {
-    const query = `SELECT * FROM employees.test;`; // Replace with your table name
+    const query = `SELECT * FROM employees.test;`; 
     const result =  await client.query(query);
    
     return result.rows;
@@ -51,6 +51,19 @@ async function readTable(){
     console.error('Error fetching data:', error);
     
   }
+}
+
+async function update(key,value,sno){
+  try{
+  
+
+   const query = `UPDATE employees.test SET ${key}='${value}' WHERE sno=${sno};`;
+  console.log(query);
+    const result = await client.query(query);
+  console.log('User saved to the database:', result.rows[0]);
+} catch (error) {
+  console.error('Error saving user to the database', error);
+}
 }
 async function close() {
   try {
@@ -65,6 +78,6 @@ module.exports = {
   connect,
   createUser,
   readTable,
-  
+  update,
   close,
 };
