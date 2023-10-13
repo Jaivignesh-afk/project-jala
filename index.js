@@ -87,7 +87,7 @@ read().catch((er)=>{
 });
 app.post("/Employee/Search.ejs", async (req,res)=>{
   try{
-    console.log(req.body);
+    
     const key = req.body.key;
     const value = req.body.value;
     const sno = req.body.sno;
@@ -98,6 +98,13 @@ app.post("/Employee/Search.ejs", async (req,res)=>{
 }catch(error){
   console.error(error);
 }
+});
+app.get("/Employee/Search.ejs/:id",async (req,res)=>{
+  const id = req.query.sno;
+  await db.del(id);
+ res.write("<script language='javascript'>window.alert('You have succesfully deleted an entry');window.location.href='/Employee/Search.ejs'</script>");
+
+ 
 });
 app.listen(process.env.PORT||3000,()=>{
   console.log("Server is running succesfully");

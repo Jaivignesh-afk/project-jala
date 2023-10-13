@@ -58,12 +58,22 @@ async function update(key,value,sno){
   
 
    const query = `UPDATE employees.test SET ${key}='${value}' WHERE sno=${sno};`;
-  console.log(query);
+  
     const result = await client.query(query);
   console.log('User saved to the database:', result.rows[0]);
 } catch (error) {
   console.error('Error saving user to the database', error);
 }
+}
+async function del(id){
+  try{
+    const query = `DELETE FROM employees.test WHERE sno=${id};`;
+  const result = await client.query(query);
+  
+} catch (error) {
+  console.error('Error saving user to the database', error);
+}
+  
 }
 async function close() {
   try {
@@ -79,5 +89,6 @@ module.exports = {
   createUser,
   readTable,
   update,
+  del,
   close,
 };
